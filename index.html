@@ -196,7 +196,20 @@
             <button id="btn-resolver-reporte" class="btn-primary" style="width: 100%; margin-top: 15px;">Marcar como Revisado/Resuelto</button>
         </div>
     </div>
-    
+
+<div id="modal-ver-detalles" class="modal hidden">
+    <div class="modal-content">
+        <button id="btn-cerrar-ver-detalles" class="close-modal-button">✖</button> 
+        
+        <h3>💻 Detalles de la Computadora: <span id="lbl-detalles-serial-modal"></span></h3>
+        <p><strong>Procesador:</strong> <span id="lbl-detalles-procesador"></span></p>
+        <p><strong>Memoria RAM:</strong> <span id="lbl-detalles-memoria"></span></p>
+        <p><strong>Laboratorio:</strong> <span id="lbl-detalles-laboratorio"></span></p>
+        <p><strong>Fila / Puesto:</strong> <span id="lbl-detalles-ubicacion"></span></p>
+        <p><strong>Estado:</strong> <span id="lbl-detalles-estado"></span></p>
+    </div>
+</div>
+
     <script type="module" src="dist/CL_index.js"></script>
 </body>
 </html>

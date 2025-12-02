@@ -108,6 +108,25 @@ export class Controlador {
             }
         });
 
+            // 1. Listener para cerrar el nuevo modal de detalles con la 'X'
+    this.vista.btnCerrarVerDetalles.addEventListener('click', () => {
+        this.vista.cerrarModalDetalles();
+    });
+    
+    // 2. Listener general para el botón 'Ver Detalles' (Aparece solo en vista usuario)
+    // Este escucha los clics en la lista de resultados de la vista de usuario.
+    this.vista.listaReporte.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        
+        // Verificar si el clic fue en el botón '👁️ Ver Detalles'
+        if (target.classList.contains('btn-ver-detalles')) {
+            const serial = target.dataset.serial;
+            if (serial) {
+                this.abrirModalVerDetalles(serial);
+            }
+        }
+    });
+
         
         // Delegación de Eventos para el botón REPORTAR
         this.vista.listaReporte.addEventListener('click', (e) => {
@@ -192,6 +211,16 @@ export class Controlador {
     }
 
     // --- MÉTODOS DE ACTUALIZACIÓN DE UI ---
+
+    private abrirModalVerDetalles(serial: string): void {
+        const pcEncontrada = this.decanato.buscarPorSerial(serial);
+
+        if (pcEncontrada) {
+            this.vista.abrirModalDetalles(pcEncontrada);
+        } else {
+            console.error(`Error: Computadora con serial ${serial} no encontrada.`);
+        }
+    }
 
     private updateUI() {
         const filtroLabStr = this.vista.filtroLaboratorio.value;

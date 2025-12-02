@@ -233,6 +233,11 @@ h1 {
     text-transform: none;
 }
 
+/* Mostrar 'Ver Detalles' tal cual */
+.btn-ver-detalles {
+    text-transform: none;
+}
+
 .btn-info {
     background-color: #17a2b8;
     color: white;
@@ -599,3 +604,22 @@ h1 {
     .estado-celda { min-width: 80px; padding: 4px 8px; }
 }
 
+/* Estilo para la X (Botón de Cerrar) en todos los modales */
+.close-modal-button {
+    position: absolute; /* Permite posicionarlo en la esquina */
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5em; /* Tamaño de la X */
+    cursor: pointer;
+    color: #555; /* Color gris */
+    padding: 5px;
+    line-height: 1; /* Asegura que la X esté bien alineada */
+}
+
+/* Estilo para el contenido del modal (si no está posicionado) */
+.modal-content {
+    position: relative; /* Crucial: Los hijos absolutos se posicionan respecto a este */
+    /* ... (El resto de tus estilos de modal-content) ... */
+}

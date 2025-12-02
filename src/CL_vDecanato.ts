@@ -16,6 +16,38 @@ export class CL_vDecanato {
     public btnRegresarAdmin = document.getElementById('btn-regresar-admin') as HTMLButtonElement;
     public btnRegresarUsuario = document.getElementById('btn-regresar-usuario') as HTMLButtonElement;
 
+
+    // --- Referencias de Modal Ver Detalles (Nuevo) ---
+    public modalVerDetalles = document.getElementById('modal-ver-detalles') as HTMLDivElement;
+    public btnCerrarVerDetalles = document.getElementById('btn-cerrar-ver-detalles') as HTMLButtonElement;
+    public lblDetallesSerial = document.getElementById('lbl-detalles-serial-modal') as HTMLSpanElement;
+    public lblDetallesProcesador = document.getElementById('lbl-detalles-procesador') as HTMLSpanElement;
+    public lblDetallesMemoria = document.getElementById('lbl-detalles-memoria') as HTMLSpanElement;
+    public lblDetallesLaboratorio = document.getElementById('lbl-detalles-laboratorio') as HTMLSpanElement;
+    public lblDetallesUbicacion = document.getElementById('lbl-detalles-ubicacion') as HTMLSpanElement;
+    public lblDetallesEstado = document.getElementById('lbl-detalles-estado') as HTMLSpanElement;
+
+
+    public abrirModalDetalles(pc: CL_mComputadora): void {
+        // 1. Llenar el modal con los datos de la PC (CL_mComputadora)
+        this.lblDetallesSerial.textContent = pc.numeroSerie;
+        this.lblDetallesProcesador.textContent = pc.procesador;
+        this.lblDetallesMemoria.textContent = pc.memoria;
+        this.lblDetallesLaboratorio.textContent = pc.laboratorio.toString();
+        this.lblDetallesUbicacion.textContent = `${pc.fila} / ${pc.puesto}`;
+        this.lblDetallesEstado.textContent = pc.estado;
+
+        // Aplicar estilo al estado (si tienes clases CSS definidas)
+        this.lblDetallesEstado.className = `estado-${pc.estado.replace(/ /g, '-').toLowerCase()}`;
+
+        // 2. Mostrar el modal
+        this.modalVerDetalles.classList.remove('hidden');
+    }
+
+    public cerrarModalDetalles(): void {
+        this.modalVerDetalles.classList.add('hidden');
+    }
+
     public mostrarVista(vista: 'general' | 'admin' | 'usuario') {
         // Ocultar todas
         this.vistaGeneral.style.display = 'none';
@@ -231,7 +263,8 @@ export class CL_vDecanato {
                 <div class="item-campo">${pc.puesto}</div>
                 
                 <div class="acciones-item">
-                    <button class="btn-reportar btn-info" data-serial="${pc.numeroSerie}">Reportar 👁️</button>
+                <button class="btn-reportar btn-info" data-serial="${pc.numeroSerie}">Reportar</button>
+                <button class="btn-secondary btn-ver-detalles" data-serial="${pc.numeroSerie}">Ver Detalles</button>
                 </div>
             `;
 

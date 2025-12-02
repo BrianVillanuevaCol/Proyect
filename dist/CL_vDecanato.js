@@ -9,6 +9,15 @@ export class CL_vDecanato {
         this.btnAccesoUsuario = document.getElementById('btn-acceso-usuario');
         this.btnRegresarAdmin = document.getElementById('btn-regresar-admin');
         this.btnRegresarUsuario = document.getElementById('btn-regresar-usuario');
+        // --- Referencias de Modal Ver Detalles (Nuevo) ---
+        this.modalVerDetalles = document.getElementById('modal-ver-detalles');
+        this.btnCerrarVerDetalles = document.getElementById('btn-cerrar-ver-detalles');
+        this.lblDetallesSerial = document.getElementById('lbl-detalles-serial-modal');
+        this.lblDetallesProcesador = document.getElementById('lbl-detalles-procesador');
+        this.lblDetallesMemoria = document.getElementById('lbl-detalles-memoria');
+        this.lblDetallesLaboratorio = document.getElementById('lbl-detalles-laboratorio');
+        this.lblDetallesUbicacion = document.getElementById('lbl-detalles-ubicacion');
+        this.lblDetallesEstado = document.getElementById('lbl-detalles-estado');
         this.lblTotalAdmin = document.getElementById('lbl-total-admin');
         this.lblFuncionalAdmin = document.getElementById('lbl-funcional-admin');
         this.lblNoFuncionalAdmin = document.getElementById('lbl-no-funcional-admin');
@@ -48,6 +57,22 @@ export class CL_vDecanato {
         this.lblReporteDetallesDesc = document.getElementById('lbl-reporte-detalles-desc');
         this.btnCerrarVerReporte = document.getElementById('btn-cerrar-ver-reporte');
         this.btnResolverReporte = document.getElementById('btn-resolver-reporte');
+    }
+    abrirModalDetalles(pc) {
+        // 1. Llenar el modal con los datos de la PC (CL_mComputadora)
+        this.lblDetallesSerial.textContent = pc.numeroSerie;
+        this.lblDetallesProcesador.textContent = pc.procesador;
+        this.lblDetallesMemoria.textContent = pc.memoria;
+        this.lblDetallesLaboratorio.textContent = pc.laboratorio.toString();
+        this.lblDetallesUbicacion.textContent = `${pc.fila} / ${pc.puesto}`;
+        this.lblDetallesEstado.textContent = pc.estado;
+        // Aplicar estilo al estado (si tienes clases CSS definidas)
+        this.lblDetallesEstado.className = `estado-${pc.estado.replace(/ /g, '-').toLowerCase()}`;
+        // 2. Mostrar el modal
+        this.modalVerDetalles.classList.remove('hidden');
+    }
+    cerrarModalDetalles() {
+        this.modalVerDetalles.classList.add('hidden');
     }
     mostrarVista(vista) {
         // Ocultar todas
@@ -193,7 +218,8 @@ export class CL_vDecanato {
                 <div class="item-campo">${pc.puesto}</div>
                 
                 <div class="acciones-item">
-                    <button class="btn-reportar btn-info" data-serial="${pc.numeroSerie}">Reportar 👁️</button>
+                <button class="btn-reportar btn-info" data-serial="${pc.numeroSerie}">Reportar</button>
+                <button class="btn-secondary btn-ver-detalles" data-serial="${pc.numeroSerie}">Ver Detalles</button>
                 </div>
             `;
             this.listaReporte.appendChild(div);
