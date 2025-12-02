@@ -1,0 +1,371 @@
+[
+  {
+    "serial": "IB2053",
+    "laboratorio": 1,
+    "procesador": "i5",
+    "memoria_gb": 1,
+    "estado": "No operativa",
+    "fila": 1,
+    "puesto": 1
+  },
+  {
+    "serial": "EZ5793",
+    "laboratorio": 1,
+    "procesador": "core2",
+    "memoria_gb": 2,
+    "estado": "Mantenimiento",
+    "fila": 1,
+    "puesto": 2
+  },
+  {
+    "serial": "RL7381",
+    "laboratorio": 1,
+    "procesador": "i7",
+    "memoria_gb": 1,
+    "estado": "Operativa",
+    "fila": 1,
+    "puesto": 3
+  },
+  {
+    "serial": "KW5174",
+    "laboratorio": 1,
+    "procesador": "i3",
+    "memoria_gb": 2,
+    "estado": "No operativa",
+    "fila": 1,
+    "puesto": 4
+  },
+  {
+    "serial": "BJ6050",
+    "laboratorio": 1,
+    "procesador": "i5",
+    "memoria_gb": 4,
+    "estado": "Mantenimiento",
+    "fila": 2,
+    "puesto": 1
+  },
+  {
+    "serial": "JI3849",
+    "laboratorio": 1,
+    "procesador": "i3",
+    "memoria_gb": 2,
+    "estado": "No operativa",
+    "fila": 2,
+    "puesto": 2
+  },
+  {
+    "serial": "UI7481",
+    "laboratorio": 2,
+    "procesador": "i3",
+    "memoria_gb": 8,
+    "estado": "Mantenimiento",
+    "fila": 2,
+    "puesto": 3
+  },
+  {
+    "serial": "XQ3763",
+    "laboratorio": 2,
+    "procesador": "i5",
+    "memoria_gb": 1,
+    "estado": "Mantenimiento",
+    "fila": 2,
+    "puesto": 4
+  },
+  {
+    "serial": "UN2777",
+    "laboratorio": 2,
+    "procesador": "i7",
+    "memoria_gb": 2,
+    "estado": "Mantenimiento",
+    "fila": 3,
+    "puesto": 1
+  },
+  {
+    "serial": "KJ2402",
+    "laboratorio": 2,
+    "procesador": "i3",
+    "memoria_gb": 2,
+    "estado": "Mantenimiento",
+    "fila": 3,
+    "puesto": 2
+  },
+  {
+    "serial": "HI5008",
+    "laboratorio": 2,
+    "procesador": "i3",
+    "memoria_gb": 4,
+    "estado": "No operativa",
+    "fila": 3,
+    "puesto": 3
+  },
+  {
+    "serial": "CY4740",
+    "laboratorio": 2,
+    "procesador": "core2",
+    "memoria_gb": 1,
+    "estado": "No operativa",
+    "fila": 3,
+    "puesto": 4
+  },
+  {
+    "serial": "UQ4641",
+    "laboratorio": 3,
+    "procesador": "i3",
+    "memoria_gb": 4,
+    "estado": "Mantenimiento",
+    "fila": 4,
+    "puesto": 1
+  },
+  {
+    "serial": "CY9986",
+    "laboratorio": 3,
+    "procesador": "core2",
+    "memoria_gb": 8,
+    "estado": "No operativa",
+    "fila": 4,
+    "puesto": 2
+  },
+  {
+    "serial": "SB6527",
+    "laboratorio": 3,
+    "procesador": "i7",
+    "memoria_gb": 1,
+    "estado": "Mantenimiento",
+    "fila": 4,
+    "puesto": 3
+  },
+  {
+    "serial": "PF5747",
+    "laboratorio": 3,
+    "procesador": "i7",
+    "memoria_gb": 1,
+    "estado": "No operativa",
+    "fila": 4,
+    "puesto": 4
+  },
+  {
+    "serial": "RB1564",
+    "laboratorio": 3,
+    "procesador": "core2",
+    "memoria_gb": 2,
+    "estado": "Operativa",
+    "fila": 5,
+    "puesto": 1
+  },
+  {
+    "serial": "NO1229",
+    "laboratorio": 3,
+    "procesador": "i5",
+    "memoria_gb": 8,
+    "estado": "No operativa",
+    "fila": 5,
+    "puesto": 2
+  },
+  {
+    "serial": "KV7555",
+    "laboratorio": 4,
+    "procesador": "i3",
+    "memoria_gb": 4,
+    "estado": "Operativa",
+    "fila": 5,
+    "puesto": 3
+  },
+  {
+    "serial": "MF8412",
+    "laboratorio": 4,
+    "procesador": "core2",
+    "memoria_gb": 8,
+    "estado": "No operativa",
+    "fila": 5,
+    "puesto": 4
+  },
+  {
+    "serial": "EJ8027",
+    "laboratorio": 4,
+    "procesador": "i5",
+    "memoria_gb": 8,
+    "estado": "Mantenimiento",
+    "fila": 6,
+    "puesto": 1
+  },
+  {
+    "serial": "PA1193",
+    "laboratorio": 4,
+    "procesador": "i3",
+    "memoria_gb": 4,
+    "estado": "No operativa",
+    "fila": 6,
+    "puesto": 2
+  },
+  {
+    "serial": "WX3632",
+    "laboratorio": 4,
+    "procesador": "i3",
+    "memoria_gb": 4,
+    "estado": "No operativa",
+    "fila": 6,
+    "puesto": 3
+  },
+  {
+    "serial": "WX3632",
+    "laboratorio": 4,
+    "procesador": "i3",
+    "memoria_gb": 4,
+    "estado": "No operativa",
+    "fila": 6,
+    "puesto": 3
+  },
+  {
+    "serial": "XI6549",
+    "laboratorio": 4,
+    "procesador": "core2",
+    "memoria_gb": 2,
+    "estado": "No operativa",
+    "fila": 6,
+    "puesto": 4
+  },
+  {
+    "serial": "IY4153",
+    "laboratorio": 5,
+    "procesador": "i5",
+    "memoria_gb": 4,
+    "estado": "Operativa",
+    "fila": 7,
+    "puesto": 1
+  },
+  {
+    "serial": "UI6312",
+    "laboratorio": 5,
+    "procesador": "i3",
+    "memoria_gb": 4,
+    "estado": "Operativa",
+    "fila": 7,
+    "puesto": 2
+  },
+  {
+    "serial": "XU9741",
+    "laboratorio": 5,
+    "procesador": "i7",
+    "memoria_gb": 4,
+    "estado": "Operativa",
+    "fila": 7,
+    "puesto": 3
+  },
+  {
+    "serial": "ZN7220",
+    "laboratorio": 5,
+    "procesador": "core2",
+    "memoria_gb": 2,
+    "estado": "No operativa",
+    "fila": 7,
+    "puesto": 4
+  },
+  {
+    "serial": "DI2390",
+    "laboratorio": 5,
+    "procesador": "i5",
+    "memoria_gb": 4,
+    "estado": "No operativa",
+    "fila": 8,
+    "puesto": 1
+  },
+  {
+    "serial": "DE2585",
+    "laboratorio": 5,
+    "procesador": "i5",
+    "memoria_gb": 8,
+    "estado": "No operativa",
+    "fila": 8,
+    "puesto": 2
+  },
+  {
+    "serial": "OR4311",
+    "laboratorio": 6,
+    "procesador": "i5",
+    "memoria_gb": 8,
+    "estado": "No operativa",
+    "fila": 8,
+    "puesto": 3
+  },
+  {
+    "serial": "CH6761",
+    "laboratorio": 6,
+    "procesador": "i3",
+    "memoria_gb": 1,
+    "estado": "Mantenimiento",
+    "fila": 8,
+    "puesto": 4
+  },
+  {
+    "serial": "ML7424",
+    "laboratorio": 6,
+    "procesador": "i7",
+    "memoria_gb": 2,
+    "estado": "No operativa",
+    "fila": 1,
+    "puesto": 1
+  },
+  {
+    "serial": "ET9713",
+    "laboratorio": 6,
+    "procesador": "i5",
+    "memoria_gb": 2,
+    "estado": "Operativa",
+    "fila": 1,
+    "puesto": 2
+  },
+  {
+    "serial": "YJ2242",
+    "laboratorio": 6,
+    "procesador": "i5",
+    "memoria_gb": 8,
+    "estado": "Mantenimiento",
+    "fila": 1,
+    "puesto": 3
+  },
+  {
+    "serial": "QD7316",
+    "laboratorio": 6,
+    "procesador": "i7",
+    "memoria_gb": 2,
+    "estado": "No operativa",
+    "fila": 1,
+    "puesto": 4
+  },
+  {
+    "serial": "RS1038",
+    "laboratorio": 6,
+    "procesador": "core2",
+    "memoria_gb": 2,
+    "estado": "Operativa",
+    "fila": 2,
+    "puesto": 1
+  },
+  {
+    "serial": "ZF5893",
+    "laboratorio": 6,
+    "procesador": "i7",
+    "memoria_gb": 1,
+    "estado": "Mantenimiento",
+    "fila": 2,
+    "puesto": 2
+  },
+  {
+    "serial": "FW9724",
+    "laboratorio": 6,
+    "procesador": "i7",
+    "memoria_gb": 4,
+    "estado": "Mantenimiento",
+    "fila": 2,
+    "puesto": 3
+  },
+  {
+    "serial": "DV7190",
+    "laboratorio": 6,
+    "procesador": "i5",
+    "memoria_gb": 1,
+    "estado": "Operativa",
+    "fila": 2,
+    "puesto": 4
+  }
+]

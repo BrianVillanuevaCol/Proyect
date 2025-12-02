@@ -1,0 +1,601 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 12px;
+}
+
+h1 {
+    color: #004d99;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+
+.estadisticas h3 {
+    color: #004d99;
+    margin-top: 0;
+}
+
+.estadisticas p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.estadisticas p span {
+    font-weight: bold;
+    color: #007bff;
+}
+
+
+.btn-primary, .btn-success, .btn-danger, .btn-secondary { /* Añadido .btn-secondary */
+    text-align: center;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    text-align: center;
+    border-radius: 1000px;
+    background-color: #007bff;
+    color: white;
+    margin: 0 auto 20px;
+    display: block;
+    width: 250px;
+}
+
+.btn-primary:hover {
+    text-align: center;
+    background-color: #0056b3;
+}
+
+.btn-success {
+    border-radius: 1000px;
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #1e7e34;
+}
+
+.btn-danger {
+    border-radius: 1000px;
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    border-radius: 1000px;
+    background-color: #bd2130;
+}
+
+.btn-secondary {
+    border-radius: 1000px;
+    background-color: #6c757d; /* Gris neutro */
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+
+.filtro-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px;
+    align-items: center;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.filtro-container label {
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap; 
+}
+
+.filtro-container select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    cursor: pointer;
+    flex-grow: 1; 
+    min-width: 120px;
+}
+
+
+.lista-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; 
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-computadora {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9em;
+    min-width: 700px; 
+}
+
+.item-computadora:not(.item-header):nth-child(even) {
+    background-color: white; /* keep rows neutral so estado shows only left bar */
+}
+
+.item-computadora:not(.item-header):hover {
+    background-color: #f0f8ff; 
+}
+
+.item-campo, .item-campo-header {
+    flex: 1;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+    min-width: 140px;
+    padding: 0 5px;
+}
+
+.item-campo {
+    position: relative; /* contain absolute estado-celda */
+    padding-left: 0; /* allow estado to fill */
+}
+
+.item-header {
+    background-color: #004d99; 
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.95em;
+    padding: 12px 15px;
+}
+
+.item-campo-header {
+    font-weight: 600;
+}
+
+.acciones-item, .acciones-item-header {
+    flex: 0 0 160px; /* Ancho fijo para las acciones */
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+}
+.acciones-item-header {
+    text-align: right;
+}
+
+.info-mensaje {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+}
+
+.btn-editar, .btn-eliminar-item, .btn-reportar {
+    padding: 6px 10px;
+    font-size: 0.8em;
+    border: none;
+    border-radius: 1000px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-editar {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-eliminar-item {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Mostrar 'Eliminar' tal cual (no forzar mayúsculas) */
+.btn-eliminar-item {
+    text-transform: none;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: white;
+}
+.btn-info:hover {
+    background-color: #138496;
+}
+
+
+.estado-celda {
+    position: absolute;
+    inset: 0; /* fill the parent's area */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px 12px 8px 22px; /* leave space for left bar */
+    font-weight: bold;
+    font-size: 0.95em;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 6px; /* subtle rounding */
+    margin: 0;
+    color: #000;
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.06); /* subtle border around state block */
+}
+
+/* left indicator */
+.estado-celda::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 12px;
+    border-radius: 6px 0 0 6px; /* rounded left corners */
+    border-right: 1px solid rgba(0,0,0,0.06); /* subtle separation */
+}
+
+.estado-funcional, .estado-operativa {
+    color: #000;
+}
+.estado-funcional::before, .estado-operativa::before {
+    background: #4fbf7a; /* lighter green stripe */
+}
+
+.estado-no-funcional, .estado-no-operativa {
+    color: #000;
+}
+.estado-no-funcional::before, .estado-no-operativa::before {
+    background: #ff8a8a; /* lighter red stripe */
+}
+
+.estado-en-reparacion, .estado-en-reparación, .estado-mantenimiento {
+    color: #000;
+}
+.estado-en-reparacion::before, .estado-en-reparación::before, .estado-mantenimiento::before {
+    background: #ffd970; /* lighter yellow stripe */
+}
+
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 80vh; /* limit modal height */
+    overflow-y: auto; /* allow scrolling inside modal */
+}
+
+.modal-content h2 {
+    color: #004d99;
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-content input,
+.modal-content select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal-content select {
+    appearance: none; 
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4L154.2%20202.2c-4.8%204.8-12.5%204.8-17.3%200L5.4%2069.4c-4.8-4.8-4.8-12.5%200-17.3s12.5-4.8%2017.3%200l123.5%20123.5L269.7%2052.1c4.8-4.8%2012.5-4.8%2017.3%200s4.9%2012.5%200%2017.3z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px auto;
+    padding-right: 30px;
+}
+
+.fila-puesto {
+    display: flex;
+    gap: 10px;
+}
+
+.fila-puesto input {
+    flex: 1;
+}
+
+.modal-content label {
+    font-weight: 600;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+    margin-top: 10px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.95));
+    position: sticky;
+    bottom: 0;
+}
+.bnt-btn-editar{
+    border-radius: 1000px;
+}
+
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; 
+}
+
+.stat-card {
+    flex: 1; 
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    color: #1E3A8A; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+}
+
+.stat-card h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.stat-card span {
+    font-size: 2em;
+    font-weight: bold;
+    display: block;
+}
+
+.stat-funcional {
+    background-color: #A1C2F1; 
+}
+
+.stat-no-funcional {
+    background-color: #B0EACD; 
+}
+
+.stat-reparacion {
+    background-color: #B0EACD; 
+}
+
+.stat-total {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #004d99;
+}
+
+.vista-usuario-titulo {
+    color: #03BB85; 
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+
+.filtro-botones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.filtro-botones h3 {
+    width: 100%;
+    margin-top: 0;
+    color: #007bff;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+    min-width: 150px;
+}
+
+.filtro-grupo label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.slider-button {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+#inp-descripcion-reporte {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical; 
+}
+
+.reporte-col {
+    width: 60px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-computadora .reporte-col {
+    padding: 0; 
+}
+
+.btn-advertencia {
+    background: none;
+    border: none;
+    font-size: 1.5em; 
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+#modal-ver-reporte .modal-content {
+    max-width: 450px;
+    position: relative;
+}
+
+#modal-ver-reporte h3 {
+    margin-top: 0;
+    color: #cc0000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reporte-detalle-contenido {
+    background-color: #fce8e8;
+    border: 1px solid #f0b8b8;
+    padding: 15px;
+    border-radius: 4px;
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
+    margin-bottom: 10px;
+    color: #444;
+    font-style: italic;
+}
+
+.close-modal-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #555;
+}
+
+.item-computadora.item-header {
+    grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 120px; /* Se añade 60px para el Reporte */
+}
+
+.item-computadora {
+    grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 120px; /* Se añade 60px para el Reporte */
+}
+
+/* Responsive rules appended: make layout suitable for tablets/phones */
+@media (max-width: 900px) {
+    .container { width: 100%; padding: 0 12px; }
+}
+
+@media (max-width: 768px) {
+    .container { width: 100%; padding: 8px; }
+
+    /* Stack item fields vertically for small screens */
+    .item-computadora {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        min-width: 0;
+        padding: 10px;
+    }
+
+    .item-campo, .item-campo-header {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .acciones-item, .acciones-item-header {
+        justify-content: flex-start;
+        flex: 0 0 auto;
+    }
+
+    /* Buttons become full width when appropriate */
+    .btn-primary { width: 100%; }
+    .btn-editar, .btn-eliminar-item, .btn-reportar { width: auto; }
+
+    /* make statistic cards wrap better */
+    .stats-container { flex-direction: column; gap: 12px; }
+}
+
+@media (max-width: 420px) {
+    body { padding: 8px; }
+    h1 { font-size: 1.1rem; }
+    .item-computadora { padding: 8px; }
+    .estado-celda { min-width: 80px; padding: 4px 8px; }
+}
+

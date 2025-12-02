@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Computadoras - Admin</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <div id="vista-general" class="container">
+        <h1 style="text-align: center; color: #004d99;">BIENVENIDO AL SISTEMA DE GESTIÓN</h1>
+        <div style="display: flex; gap: 20px; justify-content: center; margin-top: 50px;">
+            <button id="btn-acceso-admin" style="padding: 40px; font-size: 1.5em; background-color: #007bff; color: white; border: none; border-radius: 10px; cursor: pointer; width: 45%;">
+                🔐 ADMINISTRADOR
+            </button>
+            <button id="btn-acceso-usuario" style="padding: 40px; font-size: 1.5em; background-color: #28a745; color: white; border: none; border-radius: 10px; cursor: pointer; width: 45%;">
+                👤 USUARIO
+            </button>
+        </div>
+    </div>
+
+    <div id="vista-admin-content" style="display: none;">
+        <div class="container">
+            <button id="btn-regresar-admin" style="margin-bottom: 15px; padding: 10px; background-color: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                ← Regresar a Vista General
+            </button>
+
+            <h1>VISTA ADMINISTRADOR</h1>
+
+            <div class="card estadisticas">
+                <h3>ESTADÍSTICAS</h3>
+                <p>Total general de computadoras: <span id="lbl-total-admin" class="stat-total">0</span></p>
+                <p>( Funcionales, No Funcionales, En Reparación )</p>
+            </div>
+
+            <button id="btn-mostrar-form" class="btn-primary">AGREGAR COMPUTADORA (+)</button>
+
+            <div class="filtro-container">
+                <label>Laboratorio:</label>
+                <select id="filtro-laboratorio">
+                    <option value="Todos">Todos</option>
+                    <option value="1">Lab 01</option>
+                    <option value="2">Lab 02</option>
+                    <option value="3">Lab 03</option>
+                    <option value="4">Lab 04</option>
+                    <option value="5">Lab 05</option>
+                    <option value="6">Lab 06</option>
+                </select>
+                <label>Fila:</label>
+                <select id="filtro-fila">
+                    <option value="Todos">Todas</option>
+                    <option value="1">Fila 01</option>
+                    <option value="2">Fila 02</option>
+                    <option value="3">Fila 03</option>
+                    <option value="4">Fila 04</option>
+                    <option value="5">Fila 05</option>
+                    <option value="6">Fila 06</option>
+                    <option value="7">Fila 07</option>
+                    <option value="8">Fila 08</option>
+                </select>
+            </div>
+
+            <div id="lista-computadoras" class="lista-container">
+                </div>
+        </div>
+    </div> 
+
+    <div id="vista-usuario-content" style="display: none;">
+        <div class="container">
+            <button id="btn-regresar-usuario" style="margin-bottom: 15px; padding: 10px; background-color: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                ← Regresar a Vista General
+            </button>
+
+            <h1 class="vista-usuario-titulo">VISTA USUARIO</h1>
+
+            <div class="card estadisticas">
+                <div class="stats-container">
+                    <div class="stat-card stat-funcional">
+                        <h4 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">COMPUTADORAS FUNCIONALES</h4>
+                        <span id="lbl-funcional-admin">0</span>
+                    </div>
+                    <div class="stat-card stat-no-funcional">
+                        <h4 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">COMPUTADORAS NO FUNCIONALES</h4>
+                        <span id="lbl-no-funcional-admin">0</span>
+                    </div>
+                    <div class="stat-card stat-reparacion">
+                        <h4 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">COMPUTADORAS EN REPARACIÓN</h4>
+                        <span id="lbl-reparacion-admin">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card filtro-botones">
+                <h3>Filtros de Busqueda</h3>
+                
+                <div class="filtro-grupo">
+                    <label>Procesador:</label>
+                    <select id="filtro-procesador" class="slider-button">
+                        <option value="Todos">Todos</option>
+                        <option value="i3">i3</option>
+                        <option value="i5">i5</option>
+                        <option value="i7">i7</option>
+                        <option value="Core2">Core2</option>
+                    </select>
+                </div>
+                
+                <div class="filtro-grupo">
+                    <label>Memoria RAM:</label>
+                    <select id="filtro-memoria" class="slider-button">
+                        <option value="Todos">Todos</option>
+                        <option value="1">1 GB</option>
+                        <option value="2">2 GB</option>
+                        <option value="4">4 GB</option>
+                        <option value="8">8 GB</option>
+                    </select>
+                </div>
+
+                <div class="filtro-grupo">
+                    <label>Estado:</label>
+                    <select id="filtro-estado-reporte" class="slider-button">
+                        <option value="Todos">Todos</option>
+                        <option value="Funcional">Funcional</option>
+                        <option value="No Funcional">No Funcional</option>
+                        <option value="En Reparación">En Reparación</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>RESULTADOS (<span id="lbl-total-reporte">0</span> Computadoras)</h3>
+                <div id="lista-reporte" class="lista-container">
+                    </div>
+            </div>
+        </div>
+    </div> 
+
+    <div id="modal-formulario" class="modal hidden">
+        <div class="modal-content">
+            <h2>Datos de la Computadora</h2>
+            <label>Numero de Serial:</label>
+            <input type="text" id="inp-serial" placeholder="(Ej: AX1234)" required>
+            
+            <label>Procesador:</label>
+            <input type="text" id="inp-procesador" placeholder="(Ej: i5 / Core2)" required>
+            <label>Memoria RAM:</label>
+            <input type="text" id="inp-memoria" placeholder="(Solo Número - Ej: 8)" required>
+            
+            <label>Laboratorio:</label>
+            <input type="number" id="inp-laboratorio" placeholder="Laboratorio (1-6)" min="1" max="6" required>
+            
+            <label>Estado:</label>
+            <select id="inp-estado" required>
+                <option value="Funcional">Funcional</option>
+                <option value="No Funcional">No Funcional</option>
+                <option value="En Reparación">En Reparación</option>
+            </select>
+
+            <div class="fila-puesto">
+                <label>Fila:</label>
+                <input type="number" id="inp-fila" placeholder="Fila (1-8)" min="1" max="8" required>
+                <label>Puesto:</label>
+                <input type="number" id="inp-puesto" placeholder="Puesto (1-4)" min="1" max="4" required>
+            </div>
+
+            <div class="acciones">
+                <button id="btn-aceptar" class="btn-success">✔ Aceptar</button>
+                <button id="btn-eliminar-cancelar" class="btn-danger">✖ Eliminar / Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-reporte" class="modal hidden">
+        <div class="modal-content">
+            <h2>Reportar Problema</h2>
+            <p>Reportando PC con Serial: <span id="lbl-reporte-serial" class="stat-total">N/A</span></p>
+            
+            <label for="inp-descripcion-reporte">Describe el problema:</label>
+            <textarea id="inp-descripcion-reporte" rows="4" placeholder="Ej: No enciende el monitor o el teclado no funciona..." required></textarea>
+
+            <div class="acciones">
+                <button id="btn-aceptar-reporte" class="btn-success">✔ Aceptar</button>
+                <button id="btn-cancelar-reporte" class="btn-danger">✖ Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="modal-ver-reporte" class="modal hidden">
+        <div class="modal-content">
+            <button id="btn-cerrar-ver-reporte" class="close-modal-button">✖</button>
+            <h3>⚠️ Reporte de la Computadora <span id="lbl-reporte-detalles-serial"></span></h3>
+            <p class="reporte-detalle-contenido">
+                <span id="lbl-reporte-detalles-desc"></span>
+            </p>
+            <button id="btn-resolver-reporte" class="btn-primary" style="width: 100%; margin-top: 15px;">Marcar como Revisado/Resuelto</button>
+        </div>
+    </div>
+    
+    <script type="module" src="dist/CL_index.js"></script>
+</body>
+</html>
