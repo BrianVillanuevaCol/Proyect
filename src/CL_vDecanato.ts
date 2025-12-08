@@ -17,6 +17,7 @@ export class CL_vDecanato {
     public btnRegresarUsuario = document.getElementById('btn-regresar-usuario') as HTMLButtonElement;
 
 
+
     // --- Referencias de Modal Ver Detalles (Nuevo) ---
     public modalVerDetalles = document.getElementById('modal-ver-detalles') as HTMLDivElement;
     public btnCerrarVerDetalles = document.getElementById('btn-cerrar-ver-detalles') as HTMLButtonElement;
@@ -77,6 +78,10 @@ export class CL_vDecanato {
     public filtroProcesador = document.getElementById('filtro-procesador') as HTMLSelectElement; 
     public filtroMemoria = document.getElementById('filtro-memoria') as HTMLSelectElement; 
     public filtroEstadoReporte = document.getElementById('filtro-estado-reporte') as HTMLSelectElement; 
+    
+    // *** NUEVAS REFERENCIAS PARA FILTROS DE UBICACIÓN EN VISTA USUARIO ***
+    public filtroLaboratorioUser = document.getElementById('filtro-laboratorio-user') as HTMLSelectElement;
+    public filtroFilaUser = document.getElementById('filtro-fila-user') as HTMLSelectElement;
     
     public lblTotalReporte = document.getElementById('lbl-total-reporte') as HTMLSpanElement;
     public listaReporte = document.getElementById('lista-reporte') as HTMLDivElement;

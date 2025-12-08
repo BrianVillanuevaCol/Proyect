@@ -91,9 +91,38 @@
                 </div>
             </div>
 
+
+            
             <div class="card filtro-botones">
                 <h3>Filtros de Busqueda</h3>
-                
+
+
+                <div class="filtro-grupo"> 
+                <label for="filtro-laboratorio-user">Laboratorio:</label>
+        <select id="filtro-laboratorio-user" class="slider-button">
+            <option value="Todos">Todos</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+    <div class="filtro-grupo">
+        <label for="filtro-fila-user">Fila:</label>
+        <select id="filtro-fila-user" class="slider-button">
+            <option value="Todos">Todos</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select>
+    </div>
                 <div class="filtro-grupo">
                     <label>Procesador:</label>
                     <select id="filtro-procesador" class="slider-button">
@@ -189,7 +218,7 @@
     <div id="modal-ver-reporte" class="modal hidden">
         <div class="modal-content">
             <button id="btn-cerrar-ver-reporte" class="close-modal-button">✖</button>
-            <h3>⚠️ Reporte de la Computadora <span id="lbl-reporte-detalles-serial"></span></h3>
+            <h3> Reporte de la Computadora <span id="lbl-reporte-detalles-serial"></span></h3>
             <p class="reporte-detalle-contenido">
                 <span id="lbl-reporte-detalles-desc"></span>
             </p>
@@ -201,7 +230,7 @@
     <div class="modal-content">
         <button id="btn-cerrar-ver-detalles" class="close-modal-button">✖</button> 
         
-        <h3>💻 Detalles de la Computadora: <span id="lbl-detalles-serial-modal"></span></h3>
+        <h3> Detalles de la Computadora: <span id="lbl-detalles-serial-modal"></span></h3>
         <p><strong>Procesador:</strong> <span id="lbl-detalles-procesador"></span></p>
         <p><strong>Memoria RAM:</strong> <span id="lbl-detalles-memoria"></span></p>
         <p><strong>Laboratorio:</strong> <span id="lbl-detalles-laboratorio"></span></p>

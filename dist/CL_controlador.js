@@ -137,6 +137,13 @@ export class Controlador {
         this.vista.filtroEstadoReporte.addEventListener('change', () => {
             this.updateResultadosUI();
         });
+        // *** NUEVOS LISTENERS DE FILTRO PARA LA VISTA DE USUARIO ***
+        this.vista.filtroLaboratorioUser.addEventListener('change', () => {
+            this.updateResultadosUI();
+        });
+        this.vista.filtroFilaUser.addEventListener('change', () => {
+            this.updateResultadosUI();
+        });
     }
     handleAceptarReporte() {
         const nuevoReporte = this.vista.obtenerDatosReporte();
@@ -209,11 +216,33 @@ export class Controlador {
         this.vista.actualizarLista(computadorasFiltradasAdmin, reportesActivos);
         this.updateResultadosUI();
     }
+    // En CL_controlador.ts, modifica la función updateResultadosUI()
     updateResultadosUI() {
         const filtroCPUStr = this.vista.filtroProcesador.value;
         const filtroMemoriaStr = this.vista.filtroMemoria.value;
         const filtroEstadoStr = this.vista.filtroEstadoReporte.value;
+        // *** OBTENER VALORES DE NUEVOS FILTROS ***
+        const filtroLabStr = this.vista.filtroLaboratorioUser.value; // Nuevo
+        const filtroFilaStr = this.vista.filtroFilaUser.value; // Nuevo
+        // ******************************************
         let computadorasFiltradasReporte = this.decanato.obtenerTodas();
+        // *** LÓGICA DE FILTRADO: LABORATORIO ***
+        if (filtroLabStr !== 'Todos') {
+            const filtroLabNum = parseInt(filtroLabStr.trim());
+            if (!isNaN(filtroLabNum)) {
+                computadorasFiltradasReporte = computadorasFiltradasReporte.filter(pc => pc.laboratorio === filtroLabNum);
+            }
+        }
+        // *** LÓGICA DE FILTRADO: FILA ***
+        if (filtroFilaStr !== 'Todos') {
+            const filtroFilaNum = parseInt(filtroFilaStr.trim());
+            if (!isNaN(filtroFilaNum)) {
+                computadorasFiltradasReporte = computadorasFiltradasReporte.filter(pc => pc.fila === filtroFilaNum);
+            }
+        }
+        // ************************************
+        // Lógica de filtros existentes (CPU, Memoria, Estado Reporte)
+        // ESTOS VAN DESPUÉS DE LA LÓGICA ANTERIOR
         if (filtroCPUStr !== 'Todos') {
             computadorasFiltradasReporte = computadorasFiltradasReporte.filter(pc => pc.procesador.toLowerCase() === filtroCPUStr.toLowerCase());
         }
@@ -228,7 +257,7 @@ export class Controlador {
             }
         }
         if (filtroEstadoStr !== 'Todos') {
-            computadorasFiltradasReporte = computadorasFiltradasReporte.filter(pc => pc.estado === filtroEstadoStr);
+            computadorasFiltradasReporte = computadorasFiltradasReporte.filter(pc => pc.estado.toLowerCase() === filtroEstadoStr.toLowerCase());
         }
         this.vista.actualizarListaReporte(computadorasFiltradasReporte);
     }

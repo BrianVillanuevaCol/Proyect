@@ -30,6 +30,9 @@ export class CL_vDecanato {
         this.filtroProcesador = document.getElementById('filtro-procesador');
         this.filtroMemoria = document.getElementById('filtro-memoria');
         this.filtroEstadoReporte = document.getElementById('filtro-estado-reporte');
+        // *** NUEVAS REFERENCIAS PARA FILTROS DE UBICACIÓN EN VISTA USUARIO ***
+        this.filtroLaboratorioUser = document.getElementById('filtro-laboratorio-user');
+        this.filtroFilaUser = document.getElementById('filtro-fila-user');
         this.lblTotalReporte = document.getElementById('lbl-total-reporte');
         this.listaReporte = document.getElementById('lista-reporte');
         // --- Referencias de Modal CRUD (Admin) ---
