@@ -10,7 +10,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 100%;
+    max-width: 1200px; /* Limite el ancho máximo para evitar que se estire demasiado en monitores muy grandes */
     margin: 0;
     padding: 0 12px;
 }
@@ -23,6 +23,45 @@ h1 {
     padding-bottom: 10px;
 }
 
+/* Contenedor principal de los botones iniciales (ADMIN/USUARIO) */
+.acceso-botones {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* Estilos de los botones iniciales (ahora en CSS) */
+#btn-acceso-admin, #btn-acceso-usuario {
+    padding: 40px;
+    font-size: 1.5em;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 45%;
+    box-sizing: border-box; 
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+#btn-acceso-admin {
+    background-color: #007bff;
+}
+
+#btn-acceso-usuario {
+    background-color: #28a745;
+}
+
+#btn-acceso-admin:hover {
+    background-color: #0056b3;
+}
+
+#btn-acceso-usuario:hover {
+    background-color: #1e7e34;
+}
+
+/* --- Estilos de Tarjeta General (filtros, registro, etc.) --- */
 .card {
     background-color: white;
     padding: 20px;
@@ -48,11 +87,12 @@ h1 {
 }
 
 
-.btn-primary, .btn-success, .btn-danger, .btn-secondary {
+/* --- Estilos de Botones Globales --- */
+.btn-primary, .btn-success, .btn-danger, .btn-secondary, .btn-info {
     text-align: center;
     padding: 10px 15px;
     border: none;
-    border-radius: 4px;
+    border-radius: 1000px; /* Se usa 1000px para botones redondeados */
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s;
@@ -60,8 +100,6 @@ h1 {
 }
 
 .btn-primary {
-    text-align: center;
-    border-radius: 1000px;
     background-color: #007bff;
     color: white;
     margin: 0 auto 20px;
@@ -70,12 +108,10 @@ h1 {
 }
 
 .btn-primary:hover {
-    text-align: center;
     background-color: #0056b3;
 }
 
 .btn-success {
-    border-radius: 1000px;
     background-color: #28a745;
     color: white;
 }
@@ -85,52 +121,90 @@ h1 {
 }
 
 .btn-danger {
-    border-radius: 1000px;
     background-color: #dc3545;
     color: white;
 }
 
 .btn-danger:hover {
-    border-radius: 1000px;
     background-color: #bd2130;
 }
 
 .btn-secondary {
-    border-radius: 1000px;
-    background-color: #6c757d; /* Gris neutro */
+    background-color: #6c757d; 
     color: white;
+    text-transform: none;
 }
 
 .btn-secondary:hover {
     background-color: #5a6268;
 }
 
+.btn-info {
+    background-color: #17a2b8;
+    color: white;
+    text-transform: none;
+}
+.btn-info:hover {
+    background-color: #138496;
+}
 
+/* Botones pequeños de acciones en la lista */
+.btn-editar, .btn-eliminar-item, .btn-reportar {
+    padding: 6px 10px;
+    font-size: 0.8em;
+    border: none;
+    border-radius: 1000px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-editar {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-eliminar-item {
+    background-color: #dc3545;
+    color: white;
+    text-transform: none; 
+}
+
+
+/* --- Filtros (Clase usada en Vista de Usuario) --- */
 .filtro-container {
-    /* ESTA CLASE DA EL ESTILO DE TARJETA CON SOMBRA Y FLEXBOX GENERAL */
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 15px;
-    align-items: center;
     background-color: white;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
 }
 
 .filtro-container h3 {
-    width: 100%; /* El título ocupa todo el ancho */
-    margin-top: 0;
+    width: 100%; 
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    color: #007bff;
 }
 
-.filtro-container label {
+.group-filtros {
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+    gap: 15px; 
+}
+
+.group-filtros label {
     font-weight: 600;
     color: #555;
     white-space: nowrap; 
 }
 
-.filtro-container select {
+.group-filtros select {
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ddd;
@@ -140,12 +214,12 @@ h1 {
     min-width: 120px;
 }
 
-
+/* --- Lista de Computadoras (Tablas) --- */
 .lista-container {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow-x: auto; 
+    overflow-x: auto; /* Permite scroll horizontal si la tabla es más ancha que la pantalla */
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -158,7 +232,7 @@ h1 {
     padding: 10px 15px;
     border-bottom: 1px solid #eee;
     font-size: 0.9em;
-    min-width: 700px; 
+    min-width: 700px; /* Asegura el scroll horizontal en mobile para las filas de datos */
 }
 
 .item-computadora:not(.item-header):nth-child(even) {
@@ -181,6 +255,7 @@ h1 {
 .item-campo {
     position: relative; 
     padding-left: 0; 
+    font-weight: normal; 
 }
 
 .item-header {
@@ -206,6 +281,13 @@ h1 {
     text-align: right;
 }
 
+.reporte-col {
+    flex: 0 0 60px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .info-mensaje {
     text-align: center;
     padding: 20px;
@@ -213,50 +295,14 @@ h1 {
     font-style: italic;
 }
 
-.btn-editar, .btn-eliminar-item, .btn-reportar {
-    padding: 6px 10px;
-    font-size: 0.8em;
-    border: none;
-    border-radius: 1000px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.btn-editar {
-    background-color: #007bff;
-    color: white;
-}
-
-.btn-eliminar-item {
-    background-color: #dc3545;
-    color: white;
-    text-transform: none; /* Mantener minúsculas o título */
-}
-
-/* Mostrar 'Ver Detalles' tal cual (no forzar mayúsculas) */
-.btn-ver-detalles {
-    text-transform: none;
-}
-
-.btn-info {
-    background-color: #17a2b8;
-    color: white;
-}
-.btn-info:hover {
-    background-color: #138496;
-}
-
-
+/* --- Indicadores de Estado (Celdas) --- */
 .estado-celda {
-    position: absolute;
-    inset: 0; 
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 8px 12px 8px 22px; 
+    padding: 6px 10px 6px 20px; 
     font-weight: bold;
-    font-size: 0.95em;
+    font-size: 0.9em;
     box-sizing: border-box;
     white-space: nowrap;
     overflow: hidden;
@@ -268,14 +314,13 @@ h1 {
     border: 1px solid rgba(0,0,0,0.06); 
 }
 
-/* left indicator */
 .estado-celda::before {
     content: "";
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 12px;
+    width: 8px; /* Indicador más delgado */
     border-radius: 6px 0 0 6px; 
     border-right: 1px solid rgba(0,0,0,0.06); 
 }
@@ -284,36 +329,36 @@ h1 {
     color: #000;
 }
 .estado-funcional::before, .estado-operativa::before {
-    background: #4fbf7a; 
+    background: #4fbf7a; /* Verde */
 }
 
 .estado-no-funcional, .estado-no-operativa {
     color: #000;
 }
 .estado-no-funcional::before, .estado-no-operativa::before {
-    background: #ff8a8a; 
+    background: #ff8a8a; /* Rojo */
 }
 
 .estado-en-reparacion, .estado-en-reparación, .estado-mantenimiento {
     color: #000;
 }
 .estado-en-reparacion::before, .estado-en-reparación::before, .estado-mantenimiento::before {
-    background: #ffd970; 
+    background: #ffd970; /* Amarillo */
 }
 
-
-
+/* --- Modals (Ventanas Emergentes) --- */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 10px;
 }
 
 .modal.hidden {
@@ -324,15 +369,31 @@ h1 {
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 500px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    width: 95%; /* Más ancho en general */
+    max-width: 480px; /* Máximo ancho definido */
     display: flex;
     flex-direction: column;
     gap: 12px;
-    max-height: 80vh; 
+    max-height: 90vh; 
     overflow-y: auto; 
+    position: relative; 
 }
+
+.close-modal-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #555;
+    padding: 5px;
+    line-height: 1;
+    z-index: 10;
+}
+
 
 .modal-content h2 {
     color: #004d99;
@@ -343,31 +404,20 @@ h1 {
 }
 
 .modal-content input,
-.modal-content select {
+.modal-content select,
+#inp-descripcion-reporte {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 1em;
     width: 100%;
     box-sizing: border-box;
-}
-
-.modal-content select {
-    appearance: none; 
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4L154.2%20202.2c-4.8%204.8-12.5%204.8-17.3%200L5.4%2069.4c-4.8-4.8-4.8-12.5%200-17.3s12.5-4.8%2017.3%200l123.5%20123.5L269.7%2052.1c4.8-4.8%2012.5-4.8%2017.3%200s4.9%2012.5%200%2017.3z%22%2F%3E%3C%2Fsvg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px top 50%;
-    background-size: 10px auto;
-    padding-right: 30px;
+    resize: vertical; 
 }
 
 .fila-puesto {
     display: flex;
     gap: 10px;
-}
-
-.fila-puesto input {
-    flex: 1;
 }
 
 .modal-content label {
@@ -385,15 +435,14 @@ h1 {
     border-top: 1px solid #eee;
     padding-top: 12px;
     margin-top: 10px;
+    /* Fondo para ocultar elementos debajo al hacer scroll dentro del modal */
     background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.95));
     position: sticky;
     bottom: 0;
 }
-.bnt-btn-editar{
-    border-radius: 1000px;
-}
 
 
+/* --- Estadísticas (Admin) --- */
 .stats-container {
     display: flex;
     justify-content: space-around;
@@ -426,200 +475,122 @@ h1 {
     display: block;
 }
 
-.stat-funcional {
-    background-color: #A1C2F1; 
-}
-
-.stat-no-funcional {
-    background-color: #B0EACD; 
-}
-
-.stat-reparacion {
-    background-color: #B0EACD; 
-}
-
-.stat-total {
-    font-size: 1.2em;
-    font-weight: bold;
+/* Colores de las tarjetas de estadísticas */
+.stat-funcional { background-color: #A1C2F1; } /* Funcionales */
+.stat-no-funcional { background-color: #ffb5b5; } /* No Funcionales */
+.stat-reparacion { background-color: #B0EACD; } /* En Reparación */
+.stat-total { 
+    background-color: #d1e7ff; 
     color: #004d99;
 }
 
-.vista-usuario-titulo {
-    color: #03BB85; 
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
+
+/* --- Responsive Design (Ajustes para Mobile y Tablet) --- */
+
+/* Tablet y monitores pequeños (hasta 900px) */
+@media (max-width: 900px) {
+    .container { width: 100%; padding: 0 12px; }
 }
 
+/* Tablet en vertical y Mobile grande (hasta 768px) */
+@media (max-width: 768px) {
+    .container { width: 100%; padding: 8px; }
 
-.filtro-botones {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+    /* 1. Botones de acceso (ADMIN/USUARIO) */
+    .acceso-botones {
+        flex-direction: column;
+        gap: 15px; 
+    }
+    #btn-acceso-admin, #btn-acceso-usuario {
+        width: 100%; 
+        padding: 30px; 
+        font-size: 1.3em; 
+    }
+    
+    /* 2. Tarjetas de estadísticas */
+    .stats-container { flex-direction: column; gap: 12px; }
+    .stat-card { min-width: 100%; }
+
+    /* 3. Filtros */
+    .group-filtros {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    .group-filtros select, .group-filtros input {
+        width: 100%;
+    }
+
+    /* 4. Lista de computadoras (Vista de tarjeta vertical en lugar de tabla) */
+    .item-computadora {
+        min-width: 0; 
+        display: block; 
+    }
+    
+    .item-header {
+        display: none; /* Oculta el encabezado de la tabla */
+    }
+    
+    .item-campo {
+        margin-top: 5px;
+        font-size: 1em;
+        padding-left: 0;
+        position: relative; 
+    }
+
+    /* Agregamos etiquetas visibles para campos en mobile */
+    .item-computadora:not(.item-header) .item-campo::before {
+        /* Nota: Esto asume que agregarás un atributo `data-label` a cada campo 
+           en tu HTML/JavaScript para darle una etiqueta.
+           Ej: <div class="item-campo" data-label="Serial">1234</div>
+           Si no puedes modificar tu JS/HTML, omite este cambio en el CSS. */
+        content: attr(data-label) ": "; 
+        font-weight: bold;
+        color: #004d99;
+        display: block;
+    }
+    
+    .item-computadora:not(.item-header) .estado-celda {
+        position: static; 
+        width: 100%;
+        margin-top: 5px;
+        padding-left: 10px; 
+        text-align: left;
+    }
+    .item-computadora:not(.item-header) .estado-celda::before {
+        display: none; /* Oculta el indicador lateral que no tiene sentido apilado */
+    }
+
+
+    .acciones-item {
+        justify-content: flex-start;
+        flex: 0 0 auto;
+        padding-top: 10px;
+        border-top: 1px dashed #eee;
+    }
+
+    .reporte-col {
+        justify-content: flex-start;
+        flex: 0 0 auto;
+        width: 100%;
+    }
 }
 
-.filtro-botones h3 {
-    width: 100%;
-    margin-top: 0;
-    color: #007bff;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+/* Mobile pequeño (hasta 420px) */
+@media (max-width: 420px) {
+    body { padding: 8px; }
+    h1 { font-size: 1.2rem; }
+    .modal-content {
+        padding: 15px;
+    }
+    .btn-primary { 
+        width: 100%;
+    }
 }
-
-.filtro-grupo {
-    display: flex;
-    flex-direction: column;
-    flex: 1; 
-    min-width: 150px;
-}
-
-.filtro-grupo label {
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 5px;
-}
-
 .slider-button {
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ced4da;
     background-color: #f8f9fa;
     cursor: pointer;
-}
-
-#inp-descripcion-reporte {
-    width: 95%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical; 
-}
-
-.reporte-col {
-    width: 60px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.item-computadora .reporte-col {
-    padding: 0; 
-}
-
-.btn-advertencia {
-    background: none;
-    border: none;
-    font-size: 1.5em; 
-    cursor: pointer;
-    padding: 0;
-    line-height: 1;
-}
-
-#modal-ver-reporte .modal-content {
-    max-width: 450px;
-    position: relative;
-}
-
-#modal-ver-reporte h3 {
-    margin-top: 0;
-    color: #cc0000;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.reporte-detalle-contenido {
-    background-color: #fce8e8;
-    border: 1px solid #f0b8b8;
-    padding: 15px;
-    border-radius: 4px;
-    white-space: pre-wrap; 
-    word-wrap: break-word; 
-    margin-bottom: 10px;
-    color: #444;
-    font-style: italic;
-}
-
-.close-modal-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: #555;
-}
-
-.item-computadora.item-header {
-    grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 120px; 
-}
-
-.item-computadora {
-    grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 120px; 
-}
-
-/* Responsive rules appended: make layout suitable for tablets/phones */
-@media (max-width: 900px) {
-    .container { width: 100%; padding: 0 12px; }
-}
-
-@media (max-width: 768px) {
-    .container { width: 100%; padding: 8px; }
-
-    /* Stack item fields vertically for small screens */
-    .item-computadora {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-        min-width: 0;
-        padding: 10px;
-    }
-
-    .item-campo, .item-campo-header {
-        min-width: 0;
-        width: 100%;
-    }
-
-    .acciones-item, .acciones-item-header {
-        justify-content: flex-start;
-        flex: 0 0 auto;
-    }
-
-    /* Buttons become full width when appropriate */
-    .btn-primary { width: 100%; }
-    .btn-editar, .btn-eliminar-item, .btn-reportar { width: auto; }
-
-    /* make statistic cards wrap better */
-    .stats-container { flex-direction: column; gap: 12px; }
-}
-
-@media (max-width: 420px) {
-    body { padding: 8px; }
-    h1 { font-size: 1.1rem; }
-    .item-computadora { padding: 8px; }
-    .estado-celda { min-width: 80px; padding: 4px 8px; }
-}
-
-/* Estilo para la X (Botón de Cerrar) en todos los modales */
-.close-modal-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: #555;
-    padding: 5px;
-    line-height: 1;
-}
-
-/* Estilo para el contenido del modal (si no está posicionado) */
-.modal-content {
-    position: relative;
 }

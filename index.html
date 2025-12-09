@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuracion de Dispositivos</title>
-    <meta property="og:title" content="Configuracion de Dispositivos (v1.5)">
+    <meta property="og:title" content="Configuracion de Dispositivos (v1.6)">
     <meta property="og:description" content="Sistema de Gestión de Computadoras en Laboratorios de la UCLA-DCYT">
-
     <meta property="og:image" content="https://config-dispositivo-v15.vercel.app/resources/LOGO.jpg">
     <meta property="og:url" content="https://config-dispositivo-v15.vercel.app/">
     <link rel="icon" type="image/png" href="/resources/FAVICON.png">
@@ -15,13 +14,13 @@
 <body>
 
     <div id="vista-general" class="container">
-        <h1 style="text-align: center; color: #004d99;">BIENVENIDO AL SISTEMA DE GESTIÓN</h1>
+        <h1>BIENVENIDO AL SISTEMA DE GESTIÓN</h1>
         <div style="display: flex; gap: 20px; justify-content: center; margin-top: 50px;">
-            <button id="btn-acceso-admin" style="padding: 40px; font-size: 1.5em; background-color: #007bff; color: white; border: none; border-radius: 10px; cursor: pointer; width: 45%;">
-                🔐 ADMINISTRADOR
+            <button id="btn-acceso-admin">
+                ADMINISTRADOR
             </button>
-            <button id="btn-acceso-usuario" style="padding: 40px; font-size: 1.5em; background-color: #28a745; color: white; border: none; border-radius: 10px; cursor: pointer; width: 45%;">
-                👤 USUARIO
+            <button id="btn-acceso-usuario">
+                USUARIO
             </button>
         </div>
     </div>
@@ -44,7 +43,7 @@
 
             <div class="filtro-container">
                 <label>Laboratorio:</label>
-                <select id="filtro-laboratorio">
+                <select id="filtro-laboratorio"class="slider-button">
                     <option value="Todos">Todos</option>
                     <option value="1">Lab 01</option>
                     <option value="2">Lab 02</option>
@@ -54,7 +53,7 @@
                     <option value="6">Lab 06</option>
                 </select>
                 <label>Fila:</label>
-                <select id="filtro-fila">
+                <select id="filtro-fila"class="slider-button">
                     <option value="Todos">Todas</option>
                     <option value="1">Fila 01</option>
                     <option value="2">Fila 02</option>
