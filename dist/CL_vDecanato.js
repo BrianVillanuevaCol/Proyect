@@ -178,10 +178,10 @@ export class CL_vDecanato {
             const memoriaParaMostrar = pc.memoria.replace(/gb/gi, '').trim() + ' GB';
             div.innerHTML = `
                 ${reporteHTML} 
-                <div class="item-campo">Lab ${pc.laboratorio}</div>
-                <div class="item-campo">${pc.numeroSerie}</div> 
-                <div class="item-campo">${pc.fila}</div>
-                <div class="item-campo">${pc.puesto}</div>
+                <div class="item-campo"data-label="Laboratorio">Lab ${pc.laboratorio}</div>
+                <div class="item-campo"data-label="Serial">${pc.numeroSerie}</div> 
+                <div class="item-campo"data-label="Fila">${pc.fila}</div>
+                <div class="item-campo"data-label="Puesto">${pc.puesto}</div>
                 <div class="item-campo">
                     <span class="estado-celda estado-${estadoCssClass}">${pc.estado}</span>
                 </div>
@@ -215,10 +215,10 @@ export class CL_vDecanato {
             const div = document.createElement('div');
             div.classList.add('item-computadora');
             div.innerHTML = `
-                <div class="item-campo">Lab ${pc.laboratorio}</div>
-                <div class="item-campo">${pc.numeroSerie}</div>
-                <div class="item-campo">${pc.fila}</div>
-                <div class="item-campo">${pc.puesto}</div>
+                <div class="item-campo" data-label="Laboratorio">Lab ${pc.laboratorio}</div>
+                <div class="item-campo" data-label="Serial">${pc.numeroSerie}</div>
+                <div class="item-campo" data-label="Fila">${pc.fila}</div>
+                <div class="item-campo" data-label="Puesto">${pc.puesto}</div>
                 
                 <div class="acciones-item">
                 <button class="btn-reportar btn-info" data-serial="${pc.numeroSerie}">Reportar</button>

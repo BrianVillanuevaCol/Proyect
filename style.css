@@ -8,9 +8,17 @@ body {
     justify-content: center;
 }
 
+.slider-button {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
 .container {
     width: 100%;
-    max-width: 1200px; /* Limite el ancho máximo para evitar que se estire demasiado en monitores muy grandes */
+    max-width: 1200px;
     margin: 0;
     padding: 0 12px;
 }
@@ -92,7 +100,7 @@ h1 {
     text-align: center;
     padding: 10px 15px;
     border: none;
-    border-radius: 1000px; /* Se usa 1000px para botones redondeados */
+    border-radius: 1000px;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s;
@@ -232,7 +240,7 @@ h1 {
     padding: 10px 15px;
     border-bottom: 1px solid #eee;
     font-size: 0.9em;
-    min-width: 700px; /* Asegura el scroll horizontal en mobile para las filas de datos */
+    min-width: 800px; /* Aumentamos el min-width para que la vista de PC se vea más limpia */
 }
 
 .item-computadora:not(.item-header):nth-child(even) {
@@ -248,7 +256,7 @@ h1 {
     font-weight: bold;
     font-size: large;
     text-align: left;
-    min-width: 140px;
+    min-width: 120px; /* Reducimos el min-width de campos individuales para ganar espacio en PC */
     padding: 0 5px;
 }
 
@@ -320,7 +328,7 @@ h1 {
     left: 0;
     top: 0;
     bottom: 0;
-    width: 8px; /* Indicador más delgado */
+    width: 8px; 
     border-radius: 6px 0 0 6px; 
     border-right: 1px solid rgba(0,0,0,0.06); 
 }
@@ -370,8 +378,8 @@ h1 {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-    width: 95%; /* Más ancho en general */
-    max-width: 480px; /* Máximo ancho definido */
+    width: 95%;
+    max-width: 480px; 
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -435,7 +443,6 @@ h1 {
     border-top: 1px solid #eee;
     padding-top: 12px;
     margin-top: 10px;
-    /* Fondo para ocultar elementos debajo al hacer scroll dentro del modal */
     background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.95));
     position: sticky;
     bottom: 0;
@@ -487,9 +494,12 @@ h1 {
 
 /* --- Responsive Design (Ajustes para Mobile y Tablet) --- */
 
-/* Tablet y monitores pequeños (hasta 900px) */
 @media (max-width: 900px) {
-    .container { width: 100%; padding: 0 12px; }
+    .container { padding: 0 10px; }
+    /* Reducimos el ancho mínimo de la lista para que el scroll horizontal se vea solo en tablets, no forzado en mobile */
+    .item-computadora {
+        min-width: 700px;
+    }
 }
 
 /* Tablet en vertical y Mobile grande (hasta 768px) */
@@ -521,52 +531,55 @@ h1 {
         width: 100%;
     }
 
-    /* 4. Lista de computadoras (Vista de tarjeta vertical en lugar de tabla) */
+    /* 4. Lista de computadoras: VISTA DE TARJETA */
+    
+    /* ELIMINAMOS EL ANCHO MÍNIMO para que se ajuste a la pantalla del teléfono */
     .item-computadora {
         min-width: 0; 
-        display: block; 
+        display: block; /* Se comporta como una tarjeta vertical */
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd; /* Damos un borde para que parezca tarjeta */
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .lista-container {
+        overflow-x: hidden; /* Ocultamos el scroll horizontal que ya no es necesario */
     }
     
     .item-header {
-        display: none; /* Oculta el encabezado de la tabla */
+        display: none; /* Oculta el encabezado de la tabla, ya que la vista es vertical */
     }
     
     .item-campo {
         margin-top: 5px;
         font-size: 1em;
         padding-left: 0;
-        position: relative; 
     }
 
-    /* Agregamos etiquetas visibles para campos en mobile */
+    /* *IMPORTANTE*: Necesitas agregar el atributo `data-label` a tus `div.item-campo` 
+       en el HTML o JavaScript para que se vean las etiquetas en mobile. */
     .item-computadora:not(.item-header) .item-campo::before {
-        /* Nota: Esto asume que agregarás un atributo `data-label` a cada campo 
-           en tu HTML/JavaScript para darle una etiqueta.
-           Ej: <div class="item-campo" data-label="Serial">1234</div>
-           Si no puedes modificar tu JS/HTML, omite este cambio en el CSS. */
         content: attr(data-label) ": "; 
         font-weight: bold;
         color: #004d99;
-        display: block;
-    }
-    
-    .item-computadora:not(.item-header) .estado-celda {
-        position: static; 
-        width: 100%;
-        margin-top: 5px;
-        padding-left: 10px; 
-        text-align: left;
-    }
-    .item-computadora:not(.item-header) .estado-celda::before {
-        display: none; /* Oculta el indicador lateral que no tiene sentido apilado */
+        display: inline-block; /* Muestra la etiqueta antes del valor */
+        min-width: 100px; /* Ancho para alinear las etiquetas */
     }
 
-
+    /* Botones de acción en móvil: Se apilan horizontalmente y luego se rompen */
     .acciones-item {
         justify-content: flex-start;
         flex: 0 0 auto;
         padding-top: 10px;
+        margin-top: 10px;
         border-top: 1px dashed #eee;
+        flex-wrap: wrap; /* Permitimos que los botones de acción salten de línea */
+    }
+    
+    .btn-editar, .btn-eliminar-item, .btn-reportar { 
+        margin-right: 5px; 
+        margin-bottom: 5px;
     }
 
     .reporte-col {
@@ -586,11 +599,4 @@ h1 {
     .btn-primary { 
         width: 100%;
     }
-}
-.slider-button {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ced4da;
-    background-color: #f8f9fa;
-    cursor: pointer;
 }
