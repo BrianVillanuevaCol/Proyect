@@ -1,24 +1,26 @@
 import { CL_mComputadora, EstadoComputadora } from './CL_mComputadora.js';
 
+// Estructura de datos para un reporte (Serial + Descripción)
 export interface Reporte {
     serial: string;
     descripcion: string;
 }
 
+// Clase Vista: Se encarga de manipular el HTML
 export class CL_vDecanato {
-    // Referencias de Estadísticas
+    // --- Referencias a las Vistas Principales (Pantallas) ---
     public vistaGeneral = document.getElementById('vista-general') as HTMLDivElement;
     public vistaAdminContent = document.getElementById('vista-admin-content') as HTMLDivElement;
     public vistaUsuarioContent = document.getElementById('vista-usuario-content') as HTMLDivElement;
     
+    // --- Botones de Navegación ---
     public btnAccesoAdmin = document.getElementById('btn-acceso-admin') as HTMLButtonElement;
     public btnAccesoUsuario = document.getElementById('btn-acceso-usuario') as HTMLButtonElement;
     public btnRegresarAdmin = document.getElementById('btn-regresar-admin') as HTMLButtonElement;
     public btnRegresarUsuario = document.getElementById('btn-regresar-usuario') as HTMLButtonElement;
 
 
-
-    // --- Referencias de Modal Ver Detalles (Nuevo) ---
+    // --- Elementos del Modal "Ver Detalles" ---
     public modalVerDetalles = document.getElementById('modal-ver-detalles') as HTMLDivElement;
     public btnCerrarVerDetalles = document.getElementById('btn-cerrar-ver-detalles') as HTMLButtonElement;
     public lblDetallesSerial = document.getElementById('lbl-detalles-serial-modal') as HTMLSpanElement;
@@ -29,8 +31,8 @@ export class CL_vDecanato {
     public lblDetallesEstado = document.getElementById('lbl-detalles-estado') as HTMLSpanElement;
 
 
+    // Método para llenar y mostrar el modal de detalles
     public abrirModalDetalles(pc: CL_mComputadora): void {
-        // 1. Llenar el modal con los datos de la PC (CL_mComputadora)
         this.lblDetallesSerial.textContent = pc.numeroSerie;
         this.lblDetallesProcesador.textContent = pc.procesador;
         this.lblDetallesMemoria.textContent = pc.memoria;
@@ -38,10 +40,9 @@ export class CL_vDecanato {
         this.lblDetallesUbicacion.textContent = `${pc.fila} / ${pc.puesto}`;
         this.lblDetallesEstado.textContent = pc.estado;
 
-        // Aplicar estilo al estado (si tienes clases CSS definidas)
+        // Asigna clase CSS dinámica según el estado para el color
         this.lblDetallesEstado.className = `estado-${pc.estado.replace(/ /g, '-').toLowerCase()}`;
 
-        // 2. Mostrar el modal
         this.modalVerDetalles.classList.remove('hidden');
     }
 
@@ -49,13 +50,12 @@ export class CL_vDecanato {
         this.modalVerDetalles.classList.add('hidden');
     }
 
+    // Método para cambiar entre vistas (General, Admin, Usuario)
     public mostrarVista(vista: 'general' | 'admin' | 'usuario') {
-        // Ocultar todas
         this.vistaGeneral.style.display = 'none';
         this.vistaAdminContent.style.display = 'none';
         this.vistaUsuarioContent.style.display = 'none';
 
-        // Mostrar la seleccionada
         if (vista === 'general') {
             this.vistaGeneral.style.display = 'block';
         } else if (vista === 'admin') {
@@ -64,29 +64,30 @@ export class CL_vDecanato {
             this.vistaUsuarioContent.style.display = 'block';
         }
     }
+
+    // --- Referencias de Estadísticas (Admin) ---
     public lblTotalAdmin = document.getElementById('lbl-total-admin') as HTMLSpanElement; 
     public lblFuncionalAdmin = document.getElementById('lbl-funcional-admin') as HTMLSpanElement; 
     public lblNoFuncionalAdmin = document.getElementById('lbl-no-funcional-admin') as HTMLSpanElement; 
     public lblReparacionAdmin = document.getElementById('lbl-reparacion-admin') as HTMLSpanElement; 
 
-    // Referencias de Contenedores y Filtros (Admin)
+    // --- Referencias de Filtros y Lista Admin ---
     public contenedorLista = document.getElementById('lista-computadoras') as HTMLDivElement;
     public filtroLaboratorio = document.getElementById('filtro-laboratorio') as HTMLSelectElement; 
     public filtroFila = document.getElementById('filtro-fila') as HTMLSelectElement; 
     
-    // Referencias para la Sección de Resultados/Consulta
+    // --- Referencias de Filtros y Lista Usuario ---
     public filtroProcesador = document.getElementById('filtro-procesador') as HTMLSelectElement; 
     public filtroMemoria = document.getElementById('filtro-memoria') as HTMLSelectElement; 
     public filtroEstadoReporte = document.getElementById('filtro-estado-reporte') as HTMLSelectElement; 
     
-    // *** NUEVAS REFERENCIAS PARA FILTROS DE UBICACIÓN EN VISTA USUARIO ***
     public filtroLaboratorioUser = document.getElementById('filtro-laboratorio-user') as HTMLSelectElement;
     public filtroFilaUser = document.getElementById('filtro-fila-user') as HTMLSelectElement;
     
     public lblTotalReporte = document.getElementById('lbl-total-reporte') as HTMLSpanElement;
     public listaReporte = document.getElementById('lista-reporte') as HTMLDivElement;
     
-    // --- Referencias de Modal CRUD (Admin) ---
+    // --- Referencias del Modal de Formulario (Crear/Editar) ---
     public modal = document.getElementById('modal-formulario') as HTMLDivElement;
     public inpSerial = document.getElementById('inp-serial') as HTMLInputElement;
     public inpProcesador = document.getElementById('inp-procesador') as HTMLInputElement;
@@ -100,28 +101,28 @@ export class CL_vDecanato {
     public btnAceptar = document.getElementById('btn-aceptar') as HTMLButtonElement;
     public btnEliminarCancelar = document.getElementById('btn-eliminar-cancelar') as HTMLButtonElement; 
 
-    public modoEdicion: boolean = false;
+    public modoEdicion: boolean = false; // Bandera para saber si estamos editando o creando
     
-    // --- Referencias de Modal de Reporte (Usuario) ---
+    // --- Referencias del Modal Reportar (Usuario) ---
     public modalReporte = document.getElementById('modal-reporte') as HTMLDivElement;
     public lblReporteSerial = document.getElementById('lbl-reporte-serial') as HTMLSpanElement; 
     public inpDescripcionReporte = document.getElementById('inp-descripcion-reporte') as HTMLTextAreaElement;
     public btnAceptarReporte = document.getElementById('btn-aceptar-reporte') as HTMLButtonElement;
     public btnCancelarReporte = document.getElementById('btn-cancelar-reporte') as HTMLButtonElement;
     
-    // --- Referencias de Modal Ver Reporte (Admin) ---
+    // --- Referencias del Modal Ver Reporte (Admin) ---
     public modalVerReporte = document.getElementById('modal-ver-reporte') as HTMLDivElement;
     public lblReporteDetallesSerial = document.getElementById('lbl-reporte-detalles-serial') as HTMLSpanElement;
     public lblReporteDetallesDesc = document.getElementById('lbl-reporte-detalles-desc') as HTMLSpanElement;
     public btnCerrarVerReporte = document.getElementById('btn-cerrar-ver-reporte') as HTMLButtonElement;
     public btnResolverReporte = document.getElementById('btn-resolver-reporte') as HTMLButtonElement;
     
+    // Muestra el modal de formulario (limpia inputs si es creación)
     public abrirModal(esCreacion: boolean) {
         this.modoEdicion = !esCreacion;
         this.modal.classList.remove('hidden');
-        this.inpSerial.disabled = !esCreacion; 
+        this.inpSerial.disabled = !esCreacion; // Deshabilita serial si es edición
         
-        // Lógica del botón 'Cancelar'
         this.btnEliminarCancelar.textContent = '✖ Cancelar';
         this.btnEliminarCancelar.classList.remove('btn-danger'); 
         this.btnEliminarCancelar.classList.add('btn-secondary'); 
@@ -136,6 +137,7 @@ export class CL_vDecanato {
         this.limpiarInputs();
     }
     
+    // Métodos para el modal de reportar (Usuario)
     public abrirModalReporte(serial: string) {
         this.lblReporteSerial.textContent = serial; 
         this.inpDescripcionReporte.value = ''; 
@@ -147,6 +149,7 @@ export class CL_vDecanato {
         this.inpDescripcionReporte.value = '';
     }
     
+    // Métodos para el modal de ver reporte (Admin)
     public abrirModalVerReporte(reporte: Reporte) {
         this.lblReporteDetallesSerial.textContent = reporte.serial;
         this.lblReporteDetallesDesc.textContent = reporte.descripcion;
@@ -168,6 +171,7 @@ export class CL_vDecanato {
         this.inpPuesto.value = '';
     }
 
+    // Actualiza los números en las tarjetas de estadísticas (Admin)
     public actualizarEstadisticasAdmin(total: number, funcionales: number, noFuncionales: number, enReparacion: number): void {
         this.lblTotalAdmin.textContent = total.toString();
         this.lblFuncionalAdmin.textContent = funcionales.toString();
@@ -175,6 +179,7 @@ export class CL_vDecanato {
         this.lblReparacionAdmin.textContent = enReparacion.toString();
     }
     
+    // Genera la tabla HTML para el Administrador
     public actualizarLista(computadoras: CL_mComputadora[], reportesActivos: Reporte[]): void {
         this.contenedorLista.innerHTML = '';
         
@@ -202,6 +207,7 @@ export class CL_vDecanato {
             const div = document.createElement('div');
             div.classList.add('item-computadora');
             
+            // Icono de alerta si hay reporte
             let reporteHTML = `<div class="item-campo reporte-col"></div>`; 
             if (serialesReportados.has(pc.numeroSerie)) {
                 reporteHTML = `
@@ -217,6 +223,7 @@ export class CL_vDecanato {
             
             const memoriaParaMostrar = pc.memoria.replace(/gb/gi, '').trim() + ' GB'; 
 
+            // Estructura de la fila (con data-label para responsivo en CSS)
             div.innerHTML = `
                 ${reporteHTML} 
                 <div class="item-campo"data-label="Laboratorio">Lab ${pc.laboratorio}</div>
@@ -237,6 +244,7 @@ export class CL_vDecanato {
         });
     }
     
+    // Genera la tabla HTML para el Usuario
     public actualizarListaReporte(computadoras: CL_mComputadora[]): void {
         this.listaReporte.innerHTML = '';
         this.lblTotalReporte.textContent = computadoras.length.toString();
@@ -277,12 +285,13 @@ export class CL_vDecanato {
         });
     }
 
+    // Pre-carga los datos de una PC en el formulario para editar
     public cargarDatosEnInputs(pc: CL_mComputadora) {
         this.modoEdicion = true;
         this.abrirModal(false); 
         
         this.inpSerial.value = pc.numeroSerie; 
-        this.inpSerial.disabled = true; 
+        this.inpSerial.disabled = true; // No se puede editar el serial
         this.inpProcesador.value = pc.procesador;
         
         const memoriaNum = pc.memoria.replace(/gb/gi, '').trim();
@@ -297,6 +306,7 @@ export class CL_vDecanato {
         this.inpPuesto.value = pc.puesto.toString();
     }
 
+    // Lee y valida los datos del formulario de creación/edición
     public obtenerDatosDeInputs(): CL_mComputadora | null {
         const serialStr = this.inpSerial.value.trim();
         const labNum = parseInt(this.inpLaboratorio.value);
@@ -304,17 +314,16 @@ export class CL_vDecanato {
         const puestoNum = parseInt(this.inpPuesto.value);
         const procesador = this.inpProcesador.value.trim();
         
-        // Obtenemos el valor numérico del input
         const memoriaStr = this.inpMemoria.value.trim(); 
         const memoriaNum = parseInt(memoriaStr);
 
-        // VALIDACIÓN ESTRICTA DE RAM
+        // VALIDACIÓN ESTRICTA: Verifica vacíos y rangos numéricos
         if (serialStr === '' || isNaN(labNum) || labNum < 1 || labNum > 6 || isNaN(filaNum) || filaNum < 1 || filaNum > 8 || isNaN(puestoNum) || puestoNum < 1 || puestoNum > 4 || procesador === '' || isNaN(memoriaNum) || memoriaNum <= 0) {
             
             if (memoriaStr === '' || isNaN(memoriaNum) || memoriaNum <= 0) {
-                 alert(" Error: La Memoria RAM debe ser un valor NUMÉRICO (ejemplo: 4, 8, 16) y positivo.");
+                alert(" Error: La Memoria RAM debe ser un valor NUMÉRICO (ejemplo: 4, 8, 16) y positivo.");
             } else {
-                 alert(" Error: Completa todos los campos correctamente. Verifica los rangos de Laboratorio, Fila y Puesto.");
+                alert(" Error: Completa todos los campos correctamente. Verifica los rangos de Laboratorio, Fila y Puesto.");
             }
             return null;
         }
@@ -332,6 +341,7 @@ export class CL_vDecanato {
         );
     }
     
+    // Obtiene datos del formulario de reporte
     public obtenerDatosReporte(): Reporte | null {
         const serial = this.lblReporteSerial.textContent;
         const descripcion = this.inpDescripcionReporte.value.trim();
@@ -347,7 +357,6 @@ export class CL_vDecanato {
     }
 
     public solicitarContrasenaAdmin(): string | null {
-        // Usamos el prompt nativo para pedir la contraseña
         return prompt("Ingrese la Contraseña");
     }
 }

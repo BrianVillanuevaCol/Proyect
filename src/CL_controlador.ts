@@ -3,45 +3,41 @@ import { CL_vDecanato, Reporte } from './CL_vDecanato.js';
 import { DATA_COMPUTADORAS_INICIAL } from './data.js'; 
 
 
-const CONTRASENA_ADMIN = "UCLA.DCYT";
+const CONTRASENA_ADMIN = "UCLA.DCYT"; // Contraseña hardcodeada
 
 export class Controlador {
-    private decanato: CL_mDecanato;
-    private vista: CL_vDecanato;
+    private decanato: CL_mDecanato; // Instancia del Modelo
+    private vista: CL_vDecanato;    // Instancia de la Vista
 
     constructor() {
         this.decanato = new CL_mDecanato(DATA_COMPUTADORAS_INICIAL); 
         this.vista = new CL_vDecanato();
         this.setupEventListeners();
-        this.updateUI(); 
+        this.updateUI(); // Carga inicial de la interfaz
     }
 
+    // Configura todos los "listeners" (qué pasa cuando haces clic o cambias algo)
     private setupEventListeners() {
 
-        //Acceso de USUARIO (Acceso libre)
+        // Navegación: Ir a vista Usuario
         this.vista.btnAccesoUsuario.addEventListener('click', () => {
             this.vista.mostrarVista('usuario');
-            // Asegura que la vista de usuario se refresque con los datos
             this.updateUI(); 
         });
 
-        //Acceso de ADMINISTRADOR (Acceso protegido)
+        // Navegación: Ir a vista Admin (pide contraseña)
         this.vista.btnAccesoAdmin.addEventListener('click', () => {
             const contrasenaIngresada = this.vista.solicitarContrasenaAdmin();
             
-            // Verifica la contraseña
             if (contrasenaIngresada === CONTRASENA_ADMIN) {
                 this.vista.mostrarVista('admin');
-                // Asegura que la vista de admin se refresque con los datos
                 this.updateUI(); 
             } else if (contrasenaIngresada !== null) {
-                // Si el usuario ingresó algo, pero es incorrecto
                 alert(" Contraseña incorrecta. Acceso denegado.");
             }
-            // Si es 'null', el usuario presionó Cancelar, no hace nada.
         });
         
-            // Botones de regreso a la vista general
+        // Botones de "Regresar"
         this.vista.btnRegresarAdmin.addEventListener('click', () => {
             this.vista.mostrarVista('general');
         });
@@ -51,23 +47,24 @@ export class Controlador {
             this.vista.mostrarVista('general');
         });
 
-        //LISTENERS VISTA ADMINISTRADOR 
+        // Abrir modal para crear nueva PC
         this.vista.btnMostrarForm.addEventListener('click', () => {
-            this.vista.abrirModal(true); // Abre en modo Creación
+            this.vista.abrirModal(true);
         });
 
+        // Guardar cambios (Crear o Editar PC)
         this.vista.btnAceptar.addEventListener('click', (e) => {
             e.preventDefault();
             this.handleAceptar();
         });
 
-        // Lógica del botón 'Cancelar'
+        // Cancelar modal formulario
         this.vista.btnEliminarCancelar.addEventListener('click', (e) => {
             e.preventDefault();
             this.vista.cerrarModal(); 
         });
 
-        // Filtros Lab/Fila (Admin)
+        // Filtros de la vista de Administrador
         this.vista.filtroLaboratorio.addEventListener('change', () => {
             this.updateUI();
         });
@@ -75,7 +72,7 @@ export class Controlador {
             this.updateUI();
         });
 
-        // Delegación de Eventos para Editar, Eliminar y VER REPORTE (Admin)
+        // Delegación de eventos para la lista de Administrador (Editar, Eliminar, Ver Reporte)
         this.vista.contenedorLista.addEventListener('click', (e) => {
             const target = e.target as HTMLElement;
             const btnEditar = target.closest('.btn-editar');
@@ -94,7 +91,7 @@ export class Controlador {
             }
         });
         
-        // Botones del modal de Ver Reporte (Admin)
+        // Manejo del modal de Ver Reporte (Admin)
         this.vista.btnCerrarVerReporte.addEventListener('click', () => {
             this.vista.cerrarModalVerReporte();
         });
@@ -108,17 +105,16 @@ export class Controlador {
             }
         });
 
-            // 1. Listener para cerrar el nuevo modal de detalles con la 'X'
+    // Cerrar modal de detalles
     this.vista.btnCerrarVerDetalles.addEventListener('click', () => {
         this.vista.cerrarModalDetalles();
     });
 
-    // 2. Listener general para el botón 'Ver Detalles' (Aparece solo en vista usuario)
-    // Este escucha los clics en la lista de resultados de la vista de usuario.
+
+    // Evento para abrir detalles desde la lista de Usuario
     this.vista.listaReporte.addEventListener('click', (e) => {
         const target = e.target as HTMLElement;
 
-        // Verificar si el clic fue en el botón '👁️ Ver Detalles'
         if (target.classList.contains('btn-ver-detalles')) {
             const serial = target.dataset.serial;
             if (serial) {
@@ -127,8 +123,7 @@ export class Controlador {
         }
     });
 
-        
-        // Delegación de Eventos para el botón REPORTAR
+        // Evento para reportar falla desde la lista de Usuario
         this.vista.listaReporte.addEventListener('click', (e) => {
             const target = e.target as HTMLElement;
             const btnReportar = target.closest('.btn-reportar');
@@ -139,7 +134,7 @@ export class Controlador {
             }
         });
         
-        // Botones del Modal de Reporte (Usuario)
+        // Manejo del modal de Reportar (Usuario)
         this.vista.btnCancelarReporte.addEventListener('click', () => {
             this.vista.cerrarModalReporte();
         });
@@ -149,7 +144,7 @@ export class Controlador {
             this.handleAceptarReporte();
         });
         
-        // Filtros de Reporte (Disparan la actualización)
+        // Listeners para todos los filtros de la vista Usuario
         this.vista.filtroProcesador.addEventListener('change', () => {
             this.updateResultadosUI(); 
         });
@@ -160,7 +155,6 @@ export class Controlador {
             this.updateResultadosUI();
         });
 
-                // *** NUEVOS LISTENERS DE FILTRO PARA LA VISTA DE USUARIO ***
         this.vista.filtroLaboratorioUser.addEventListener('change', () => {
             this.updateResultadosUI();
         });
@@ -171,6 +165,7 @@ export class Controlador {
     }
     
 
+    // Procesa el envío de un reporte por parte del usuario
     private handleAceptarReporte() {
         const nuevoReporte = this.vista.obtenerDatosReporte();
 
@@ -185,6 +180,7 @@ export class Controlador {
         alert(`Reporte enviado para PC ${nuevoReporte.serial}.`);
     }
     
+    // Admin ve un reporte existente
     private handleVerReporte(serial: string) {
         const reporte = this.decanato.buscarReporte(serial);
         if (reporte) {
@@ -192,6 +188,7 @@ export class Controlador {
         }
     }
 
+    // Admin guarda una PC (nueva o editada)
     private handleAceptar() {
         const nuevaPC = this.vista.obtenerDatosDeInputs(); 
         if (nuevaPC === null) {
@@ -203,6 +200,7 @@ export class Controlador {
         this.updateUI(); 
     }
     
+    // Admin elimina una PC
     private handleEliminar(serial: string) {
         if (confirm(`¿Estás seguro de eliminar la computadora con Serial: ${serial}?`)) {
             this.decanato.eliminarCompt(serial);
@@ -212,6 +210,7 @@ export class Controlador {
         }
     }
 
+    // Prepara el formulario para editar
     private handleEditar(serial: string) {
         const pc = this.decanato.buscarPorSerial(serial);
         if (pc) {
@@ -219,8 +218,8 @@ export class Controlador {
         }
     }
 
-    // --- MÉTODOS DE ACTUALIZACIÓN DE UI ---
 
+    // Abre el modal con detalles completos de la PC
     private abrirModalVerDetalles(serial: string): void {
         const pcEncontrada = this.decanato.buscarPorSerial(serial);
 
@@ -231,16 +230,16 @@ export class Controlador {
         }
     }
 
+    // Actualiza la UI de Administrador (lista principal y estadísticas)
     private updateUI() {
         const filtroLabStr = this.vista.filtroLaboratorio.value;
         const filtroFilaStr = this.vista.filtroFila.value;
         
-        //  Estadísticas GLOBALES
         const computadorasCompletas = this.decanato.obtenerTodas();
         const stats = this.decanato.generarReporte(computadorasCompletas); 
         this.vista.actualizarEstadisticasAdmin(stats.total, stats.funcionales, stats.noFuncionales, stats.enReparacion);
         
-        //  Lista Filtrada por Lab/Fila (Vista Admin)
+        // Filtros básicos de Admin (Lab y Fila)
         let computadorasFiltradasAdmin = [...computadorasCompletas]; 
         if (filtroLabStr !== 'Todos') {
             const filtroLabNum = parseInt(filtroLabStr);
@@ -254,23 +253,22 @@ export class Controlador {
         const reportesActivos = this.decanato.obtenerReportesActivos(); 
         this.vista.actualizarLista(computadorasFiltradasAdmin, reportesActivos); 
         
+        // También actualiza la vista de usuario por si acaso
         this.updateResultadosUI();
     }
     
-    // En CL_controlador.ts, modifica la función updateResultadosUI()
+    // Actualiza la UI de Usuario (lista con filtros avanzados)
     private updateResultadosUI() {
         const filtroCPUStr = this.vista.filtroProcesador.value;
         const filtroMemoriaStr = this.vista.filtroMemoria.value;
         const filtroEstadoStr = this.vista.filtroEstadoReporte.value; 
 
-        // *** OBTENER VALORES DE NUEVOS FILTROS ***
-        const filtroLabStr = this.vista.filtroLaboratorioUser.value; // Nuevo
-        const filtroFilaStr = this.vista.filtroFilaUser.value; // Nuevo
-        // ******************************************
+        const filtroLabStr = this.vista.filtroLaboratorioUser.value; 
+        const filtroFilaStr = this.vista.filtroFilaUser.value; 
 
         let computadorasFiltradasReporte = this.decanato.obtenerTodas(); 
 
-        // *** LÓGICA DE FILTRADO: LABORATORIO ***
+        // Lógica de filtrado en cascada
         if (filtroLabStr !== 'Todos') {
             const filtroLabNum = parseInt(filtroLabStr.trim());
             if (!isNaN(filtroLabNum)) {
@@ -280,7 +278,6 @@ export class Controlador {
             }
         }
 
-        // *** LÓGICA DE FILTRADO: FILA ***
         if (filtroFilaStr !== 'Todos') {
             const filtroFilaNum = parseInt(filtroFilaStr.trim());
             if (!isNaN(filtroFilaNum)) {
@@ -289,10 +286,7 @@ export class Controlador {
                 );
             }
         }
-        // ************************************
 
-        // Lógica de filtros existentes (CPU, Memoria, Estado Reporte)
-        // ESTOS VAN DESPUÉS DE LA LÓGICA ANTERIOR
         if (filtroCPUStr !== 'Todos') {
             computadorasFiltradasReporte = computadorasFiltradasReporte.filter(pc => 
                 pc.procesador.toLowerCase() === filtroCPUStr.toLowerCase()

@@ -1,8 +1,8 @@
-// ARCHIVO: CL_index.ts
 import { Controlador } from "./CL_controlador.js";
+// Espera a que el DOM esté listo antes de arrancar la app
 document.addEventListener('DOMContentLoaded', () => {
     try {
-        new Controlador();
+        new Controlador(); // Inicia el controlador principal
         console.log("Aplicación de Gestión de Decanato iniciada correctamente.");
     }
     catch (error) {
